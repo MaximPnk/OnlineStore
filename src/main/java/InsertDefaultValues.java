@@ -5,7 +5,7 @@ public class InsertDefaultValues {
 
     public static void main(String[] args) {
 
-        SessionFactory factory = SessionFactoryConfiguration.getSessionFactory("hibernate.cfg.xml");
+        SessionFactory factory = SessionFactoryConfiguration.getSessionFactory();
         Session session = factory.getCurrentSession();
 
         try {
