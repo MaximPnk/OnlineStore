@@ -30,12 +30,15 @@ public class SessionFactoryConfiguration {
                 .setProperty("hibernate.show_sql", properties.getProperty("show"))
                 .setProperty("hibernate.current_session_context_class", properties.getProperty("session_context"))
                 .setProperty("hibernate.hbm2ddl.auto", properties.getProperty("hbm2ddl"))
-                .addAnnotatedClass(Product.class)
-                .addAnnotatedClass(Type.class)
+                .addAnnotatedClass(Brand.class)
+                .addAnnotatedClass(Client.class)
                 .addAnnotatedClass(Brand.class)
                 .addAnnotatedClass(Country.class)
-                .addAnnotatedClass(Sale.class)
-                .addAnnotatedClass(Order.class);
+                .addAnnotatedClass(Order.class)
+                .addAnnotatedClass(Product.class)
+                .addAnnotatedClass(ProductOrder.class)
+                .addAnnotatedClass(Role.class)
+                .addAnnotatedClass(Type.class);
 
 
         return configuration.buildSessionFactory();

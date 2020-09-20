@@ -3,6 +3,7 @@ package entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import model.EntityModel;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,12 +14,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "type")
-public class Type {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+public class Type extends EntityModel {
 
     @Column(name = "name")
     private String name;
@@ -42,8 +38,7 @@ public class Type {
     @Override
     public String toString() {
         return "Type{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 '}';
     }
 }

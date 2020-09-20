@@ -1,9 +1,8 @@
 import entity.Brand;
-import entity.Country;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class InsertDefaultValues {
+public class GetFromTables {
 
     public static void main(String[] args) {
 
@@ -13,13 +12,8 @@ public class InsertDefaultValues {
         try {
             session.beginTransaction();
 
-            //TODO добавить несколько значений
-            Country country = new Country("Russia");
-            Brand brand = new Brand("Armani", 30);
-            brand.setCountry(country);
-
-            session.save(brand);
-            session.save(country);
+            Brand brand = session.get(Brand.class, 2);
+            System.out.println(brand);
 
             session.getTransaction().commit();
         } catch (Exception e) {

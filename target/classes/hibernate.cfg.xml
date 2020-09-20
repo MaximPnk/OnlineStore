@@ -4,6 +4,8 @@
 
 <hibernate-configuration>
 
+<!--    ФАЙЛ НЕ ИСПОЛЬЗУЕТСЯ-->
+
     <session-factory>
 
         <!-- JDBC Database connection settings -->

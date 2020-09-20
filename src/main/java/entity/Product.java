@@ -3,6 +3,7 @@ package entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import model.EntityModel;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -14,12 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "product")
-public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private int id;
+public class Product extends EntityModel {
 
     @Column(name = "name")
     private String name;
@@ -38,22 +34,10 @@ public class Product {
     @Column(name = "amount")
     private int amount;
 
-    @ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinTable(name = "order_product",
-            joinColumns = @JoinColumn(name = "product_id"),
-            inverseJoinColumns = @JoinColumn(name = "order_id"))
-    private List<Order> orders;
+    //TODO синхронизировать таблицы order, product и product_order, как добавлять сразу во все
+    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    private List<ProductOrder> productOrderList;
 
-    public void addOrder(Order order) {
-        if (orders == null) {
-            orders = new ArrayList<>();
-        }
-        if (order.getProducts() == null) {
-            order.setProducts(new ArrayList<>());
-        }
-        orders.add(order);
-        order.getProducts().add(this);
-    }
     public Product(String name, BigDecimal price, int amount) {
         this.name = name;
         this.price = price;
@@ -63,14 +47,11 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", typeName=" + typeName +
                 ", brandName=" + brandName +
                 ", price=" + price +
                 ", amount=" + amount +
                 '}';
     }
-
-
 }
