@@ -3,9 +3,9 @@ package entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import model.EntityModel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +16,11 @@ import java.util.List;
 @Table(name = "type")
 public class Type extends EntityModel {
 
+    @Pattern(regexp = "[a-zA-Zа-яА-Я\\s]+", message = "Обязательно к заполнению")
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "typeName",
+    @OneToMany(mappedBy = "type",
             cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH } )
     private List<Product> products;
 
@@ -28,7 +29,7 @@ public class Type extends EntityModel {
             products = new ArrayList<>();
         }
         products.add(product);
-        product.setTypeName(this);
+        product.setType(this);
     }
 
     public Type(String name) {

@@ -3,11 +3,12 @@ package entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import model.EntityModel;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @NoArgsConstructor
 @Getter
@@ -16,6 +17,7 @@ import java.util.List;
 @Table(name = "country")
 public class Country extends EntityModel {
 
+    @Pattern(regexp = "[a-zA-Zа-яА-Я\\s]+", message = "Обязательно к заполнению")
     @Column(name = "name")
     private String name;
 
@@ -40,5 +42,18 @@ public class Country extends EntityModel {
         return "Country{" +
                 "name='" + name + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Country country = (Country) o;
+        return Objects.equals(name, country.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }

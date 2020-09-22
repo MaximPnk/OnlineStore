@@ -3,9 +3,13 @@ package entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import model.EntityModel;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,17 +20,21 @@ import java.util.List;
 @Table(name = "brand")
 public class Brand extends EntityModel {
 
+    @Pattern(regexp = "[a-zA-Zа-яА-Я\\s0-9]+", message = "Обязательно к заполнению")
     @Column(name = "name")
     private String name;
 
+    @Valid
     @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     @JoinColumn(name = "country_id")
     private Country country;
 
+    @Min(value = 0, message = "Скидка указана неверно")
+    @Max(value = 99, message = "Скидка указана неверно")
     @Column(name = "sale")
     private int sale;
 
-    @OneToMany(mappedBy = "brandName",
+    @OneToMany(mappedBy = "brand",
             cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH } )
     private List<Product> products;
 
@@ -35,8 +43,9 @@ public class Brand extends EntityModel {
             products = new ArrayList<>();
         }
         products.add(product);
-        product.setBrandName(this);
+        product.setBrand(this);
     }
+
 
     public Brand(String name, int sale) {
         this.name = name;

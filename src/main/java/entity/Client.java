@@ -3,7 +3,6 @@ package entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import model.EntityModel;
 
 import javax.persistence.*;
 import java.util.List;
