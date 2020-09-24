@@ -17,9 +17,6 @@ public class Role extends EntityModel {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    private List<Client> clients;
-
     public Role(String name) {
         this.name = name;
     }

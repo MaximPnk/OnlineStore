@@ -12,7 +12,7 @@ public interface CrudService {
 
     List<Product> searchProducts(String product, String type, String brand, String country);
 
-    void deleteProduct(int id);
+    void deleteProduct(long id);
 
-    Product getProduct(int productId);
+    Product getProduct(long productId);
 }

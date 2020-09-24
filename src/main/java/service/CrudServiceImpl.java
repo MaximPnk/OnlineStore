@@ -9,6 +9,7 @@ import entity.Country;
 import entity.Product;
 import entity.Type;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import valid.ValidProduct;
@@ -47,6 +48,9 @@ public class CrudServiceImpl implements CrudService {
             brand = new Brand(validProduct.getBrandName(), validProduct.getBrandSale());
             brand.setCountry(country);
             brandDao.save(brand);
+        } else {
+            brand.setCountry(country);
+            brand.setSale(validProduct.getBrandSale());
         }
 
         Type type = typeDao.findTypeByName(validProduct.getTypeName());
@@ -63,6 +67,11 @@ public class CrudServiceImpl implements CrudService {
             product.setBrand(brand);
             product.setType(type);
             productDao.saveProduct(product);
+        } else {
+            product.setBrand(brand);
+            product.setType(type);
+            product.setAmount(validProduct.getAmount());
+            product.setPrice(validProduct.getPrice());
         }
     }
 
@@ -80,13 +89,13 @@ public class CrudServiceImpl implements CrudService {
 
     @Override
     @Transactional
-    public void deleteProduct(int id) {
+    public void deleteProduct(long id) {
         productDao.deleteProduct(id);
     }
 
     @Override
     @Transactional
-    public Product getProduct(int productId) {
+    public Product getProduct(long productId) {
         return productDao.getProduct(productId);
     }
 }

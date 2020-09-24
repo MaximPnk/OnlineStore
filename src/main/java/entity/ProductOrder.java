@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -24,7 +25,20 @@ public class ProductOrder extends EntityModel {
     @Column(name = "count")
     private int count;
 
+    public ProductOrder(Order order, Product product, int count) {
+        this.order = order;
+        this.product = product;
+        this.count = count;
+    }
+
+    public ProductOrder(Order order, Product product) {
+        this.order = order;
+        this.product = product;
+    }
+
     public ProductOrder(int count) {
         this.count = count;
     }
+
+
 }

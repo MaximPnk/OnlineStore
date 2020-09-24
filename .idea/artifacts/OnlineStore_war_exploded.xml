@@ -12,7 +12,6 @@
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="OnlineStore" />
-          <element id="jpa-descriptors" facet="OnlineStore/jpa/JPA" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.2.8.RELEASE" />
@@ -29,6 +28,8 @@
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-web:5.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-core:5.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework.security:spring-security-config:5.3.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-taglibs:5.3.4.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework.security:spring-security-acl:5.3.4.RELEASE" />
           <element id="library" level="project" name="Maven: org.hibernate.validator:hibernate-validator:6.1.5.Final" />
           <element id="library" level="project" name="Maven: jakarta.validation:jakarta.validation-api:2.0.2" />
           <element id="library" level="project" name="Maven: org.jboss.logging:jboss-logging:3.3.2.Final" />

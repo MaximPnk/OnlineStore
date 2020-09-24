@@ -20,7 +20,7 @@ public class ProductDaoImpl implements ProductDao {
     SessionFactory sessionFactory;
 
     @Override
-    public Product getProduct(int id) {
+    public Product getProduct(long id) {
         Session session = sessionFactory.getCurrentSession();
 
         Product product = session.get(Product.class, id);
@@ -55,10 +55,11 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public void deleteProduct(int id) {
+    public void deleteProduct(long id) {
         Session session = sessionFactory.getCurrentSession();
 
         Product product = session.get(Product.class, id);
+
         session.delete(product);
     }
 
@@ -74,7 +75,6 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    @Transactional
     public void saveProduct(Product product) {
         Session session = sessionFactory.getCurrentSession();
 

@@ -1,22 +1,24 @@
 package dao;
 
-import entity.Brand;
-import entity.Country;
-import entity.Product;
-import entity.Type;
+import entity.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 
 @Repository
 public class StartDaoImpl implements StartDao {
 
     @Autowired
     SessionFactory sessionFactory;
+
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
 
     @Override
     @Transactional
@@ -94,6 +96,15 @@ public class StartDaoImpl implements StartDao {
         session.saveOrUpdate(product8);
         session.saveOrUpdate(product9);
         session.saveOrUpdate(product10);
+
+        Role admin = new Role("ROLE_ADMIN");
+        Role client = new Role("ROLE_CLIENT");
+        User adm = new User("admin", passwordEncoder.encode("admin"), "first", "last", "a@a.ru", Collections.singletonList(admin));
+        User cli = new User("client", passwordEncoder.encode("client"), "first", "last", "b@b.ru", Collections.singletonList(client));
+        session.saveOrUpdate(admin);
+        session.saveOrUpdate(client);
+        session.saveOrUpdate(adm);
+        session.saveOrUpdate(cli);
     }
 
 

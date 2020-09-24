@@ -16,29 +16,28 @@ import java.util.List;
 public class Order extends EntityModel {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "client_id")
-    private Client client;
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @Column(name = "date")
     private LocalDateTime date;
 
+    @Column(name = "paid")
+    private boolean isPaid;
+
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ProductOrder> productOrderList;
 
-    /*@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
-    @JoinTable(name = "order_product",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> products;*/
-
-    public Order(LocalDateTime date) {
+    public Order(User user, LocalDateTime date, boolean isPaid) {
+        this.user = user;
         this.date = date;
+        this.isPaid = isPaid;
     }
 
     @Override
     public String toString() {
         return "Order{" +
-                "client=" + client +
+                "client=" + user +
                 ", date=" + date +
                 '}';
     }
