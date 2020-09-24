@@ -23,7 +23,11 @@
 <br><br>
 
 <form:form action="search" method="GET">
-    Поиск по базе: <input type="text" name="searchValue" />
+    <h4>Фильтр</h4>
+    Наименование: <input type="text" name="product" />
+    Тип: <input type="text" name="type" />
+    Бренд: <input type="text" name="brand" />
+    Страна: <input type="text" name="country" />
     <input type="submit" value="Search" class="add-button" />
 </form:form>
 

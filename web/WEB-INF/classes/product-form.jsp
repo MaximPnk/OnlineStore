@@ -18,12 +18,7 @@
 </head>
 <body>
 <h2>Введите данные о товаре</h2>
-<form:form action="saveProduct" modelAttribute="product" method="post">
-
-    <form:hidden path="id" />
-    <form:hidden path="brand.country.id" />
-    <form:hidden path="brand.id" />
-    <form:hidden path="type.id" />
+<form:form action="saveProduct" modelAttribute="validProduct" method="post">
 
     <table>
         <tbody>
@@ -33,19 +28,19 @@
         </tr>
         <tr>
             <td><label>Название бренда:</label></td>
-            <td><form:input path="brand.name" /><form:errors path="brand.name" cssClass="error" /></td>
+            <td><form:input path="brandName" /><form:errors path="brandName" cssClass="error" /></td>
         </tr>
         <tr>
             <td><label>Страна производитель:</label></td>
-            <td><form:input path="brand.country.name" /><form:errors path="brand.country.name" cssClass="error" /></td>
+            <td><form:input path="countryName" /><form:errors path="countryName" cssClass="error" /></td>
         </tr>
         <tr>
             <td><label>Тип товара:</label></td>
-            <td><form:input path="type.name" /><form:errors path="type.name" cssClass="error" /></td>
+            <td><form:input path="typeName" /><form:errors path="typeName" cssClass="error" /></td>
         </tr>
         <tr>
             <td><label>Скидка:</label></td>
-            <td><form:input path="brand.sale" /><form:errors path="brand.sale" cssClass="error" /></td>
+            <td><form:input path="brandSale" /><form:errors path="brandSale" cssClass="error" /></td>
         </tr>
         <tr>
             <td><label>Цена:</label></td>

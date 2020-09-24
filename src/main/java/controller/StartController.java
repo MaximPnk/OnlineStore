@@ -1,6 +1,6 @@
 package controller;
 
-import dao.StartDAO;
+import dao.StartDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class StartController {
 
     @Autowired
-    private StartDAO startDAO;
+    private StartDao startDAO;
 
 
     @GetMapping("/insertDefaultValues")
