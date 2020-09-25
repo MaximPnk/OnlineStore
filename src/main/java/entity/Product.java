@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @NoArgsConstructor
@@ -18,11 +19,11 @@ public class Product extends EntityModel {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH } )
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH } )
     @JoinColumn(name = "type_id")
     private Type type;
 
-    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH } )
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH } )
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
@@ -32,9 +33,15 @@ public class Product extends EntityModel {
     @Column(name = "amount")
     private int amount;
 
-    //TODO синхронизировать таблицы order, product и product_order, как добавлять сразу во все
-    @OneToMany(mappedBy = "order",cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "order",cascade = CascadeType.ALL)
     private List<ProductOrder> productOrderList;
+
+    public void add(ProductOrder productOrder) {
+        if (productOrderList == null) {
+            productOrderList = new ArrayList<>();
+        }
+        productOrderList.add(productOrder);
+    }
 
     public Product(String name, BigDecimal price, int amount) {
         this.name = name;

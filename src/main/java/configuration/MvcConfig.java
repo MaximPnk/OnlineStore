@@ -23,7 +23,7 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @EnableTransactionManagement
-@ComponentScan(basePackages = { "configuration", "controller", "dao", "entity", "service", "valid" })
+@ComponentScan(basePackages = { "configuration", "controller", "dao", "daoImpl", "entity", "service", "valid" })
 @PropertySource("classpath:connection.properties")
 public class MvcConfig {
 

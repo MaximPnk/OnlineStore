@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: admmj
@@ -11,11 +12,16 @@
     <title>Title</title>
 </head>
 <body>
-${user.id}
-${user.userName}
-${user.password}
-${user.firstName}
-${user.lastName}
-${user.email}
+
+<c:forEach var="productOrder" items="${currentProducts}">
+    ${productOrder.product.name} ${productOrder.product.brand.name} ${productOrder.product.type.name} ${productOrder.product.brand.country.name} ${productOrder.count} ${productOrder.price}<br>
+</c:forEach>
+
+<br><br>
+
+<c:if test="${currentProducts.size() > 0}">
+    <p>Сумма заказа = ${sum} <a href="${pageContext.request.contextPath}/insertDefaultValues">Купить</a></p>
+</c:if>
+
 </body>
 </html>
