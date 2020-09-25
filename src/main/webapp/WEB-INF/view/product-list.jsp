@@ -27,7 +27,9 @@
     </form:form>
 </security:authorize>
 
-<p><a href="/basket">Корзина</a></p>
+<p><a href="${pageContext.request.contextPath}/order/basket">Корзина</a></p>
+<p><a href="${pageContext.request.contextPath}/order/history">История заказов</a></p>
+
 
 <h2>Список товаров</h2>
 
@@ -74,7 +76,7 @@
         <c:url value="/admin/delete" var="deleteLink">
             <c:param name="productId" value="${tmpProduct.id}" />
         </c:url>
-        <c:url value="/order" var="orderLink">
+        <c:url value="/order/order" var="orderLink">
             <c:param name="productId" value="${tmpProduct.id}" />
         </c:url>
         <tr>

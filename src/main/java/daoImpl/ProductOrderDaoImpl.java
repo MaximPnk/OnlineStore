@@ -47,4 +47,13 @@ public class ProductOrderDaoImpl implements ProductOrderDao {
 
         return productOrder;
     }
+
+    @Override
+    public void delete(long productOrderId) {
+        Session session = sessionFactory.getCurrentSession();
+
+        ProductOrder po = session.get(ProductOrder.class, productOrderId);
+
+        session.delete(po);
+    }
 }

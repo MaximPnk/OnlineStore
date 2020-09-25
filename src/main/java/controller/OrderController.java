@@ -1,5 +1,6 @@
 package controller;
 
+import entity.Order;
 import entity.Product;
 import entity.ProductOrder;
 import entity.User;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.CrudService;
 import service.OrderService;
@@ -19,6 +21,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
+@RequestMapping("/order")
 public class OrderController {
 
     @Autowired
@@ -44,13 +47,37 @@ public class OrderController {
         return "basket";
     }
 
+    @GetMapping("/history")
+    public String history(Model model) {
+
+        List<Order> orders = orderService.showCompleted();
+        model.addAttribute("orders", orders);
+
+        return "history";
+    }
+
     @GetMapping("/order")
     public String order(@RequestParam("productId") long productId) {
 
         Product product = crudService.getProduct(productId);
-
         orderService.addProductInBasket(product);
 
         return "redirect:/product/list";
+    }
+
+    @GetMapping("/buy")
+    public String buy() {
+
+        orderService.buyProducts();
+
+        return "redirect:/product/list";
+    }
+
+    @GetMapping("/delete")
+    public String deleteFromBasket(@RequestParam("productOrderId") long productOrderId) {
+
+        orderService.deleteProductOrder(productOrderId);
+
+        return "redirect:/order/basket";
     }
 }

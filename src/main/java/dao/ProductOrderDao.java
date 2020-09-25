@@ -12,4 +12,6 @@ public interface ProductOrderDao {
     List<ProductOrder> getProductsByOrder(Order order);
 
     ProductOrder findByProductAndOrder(Product product, Order order);
+
+    void delete(long productOrderId);
 }

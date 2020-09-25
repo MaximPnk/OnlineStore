@@ -79,10 +79,38 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public void showCompleted() {
-        //получаем список ордеров, в которых пейд=тру и юзер = текущий ИЛИ ничего
+    public List<Order> showCompleted() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String name = authentication.getName();
+        User user = userDao.findUserByName(name);
 
+        List<Order> orders = orderDao.findPaidOrders(user, true);
+
+        return orders;
         //из таблицы productorder выводим все продукты для каждого ордера
+    }
+
+    @Override
+    @Transactional
+    public void buyProducts() {
+        List<ProductOrder> productOrders = showCurrent();
+
+        for (ProductOrder po : productOrders) {
+            if (po.getCount() > po.getProduct().getAmount()) {
+                return;
+            }
+        }
+
+        for (ProductOrder po : productOrders) {
+            po.getProduct().setAmount(po.getProduct().getAmount()-po.getCount());
+            po.getOrder().setPaid(true);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteProductOrder(long productOrderId) {
+        productOrderDao.delete(productOrderId);
     }
 
 

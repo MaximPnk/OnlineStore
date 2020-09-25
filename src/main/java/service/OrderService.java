@@ -1,5 +1,6 @@
 package service;
 
+import entity.Order;
 import entity.Product;
 import entity.ProductOrder;
 
@@ -11,5 +12,9 @@ public interface OrderService {
 
     List<ProductOrder> showCurrent();
 
-    void showCompleted();
+    List<Order> showCompleted();
+
+    void buyProducts();
+
+    void deleteProductOrder(long productOrderId);
 }
