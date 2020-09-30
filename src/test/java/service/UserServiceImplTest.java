@@ -55,26 +55,3 @@ public class UserServiceImplTest {
         assertEquals("OK", user, realUser);
     }
 }
-
-
-/*    POST http://localhost:8081/
-
-        {
-        "id": "1",
-        "method": "kosovo.user_management.CCreateProfile",
-        "params": {
-        "id": "e0d5b409-09ca-69d0-1c14-ab682e63b3f9",
-        "userNumber": "e0d5b409-09ca-69d0-1c14-ab682e63b3f9",
-        "userType": "internal",
-        "username": "johnsmith",
-        "createdDate": "2020-02-02 23:59:59",
-        "validTo": "2020-02-02 23:59:59",
-        "validFrom": "2020-02-02 23:59:59",
-        "status": "active",
-        "firstname": "John",
-        "lastname": "Smith",
-        "email": "emith@email.com",
-        "phone": "22112211",
-        "password": "test"
-        }
-        }*/

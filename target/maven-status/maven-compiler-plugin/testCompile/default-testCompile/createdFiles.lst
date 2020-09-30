@@ -1,0 +1,3 @@
+config\TestPrimaryDataSourceConfig.class
+dao\UserDaoTest.class
+service\UserServiceImplTest.class

@@ -1,6 +1,0 @@
-###
-POST http://localhost:8080/admin/test
-Content-Type: application/json
-{
-  "s" : "Hello"
-}

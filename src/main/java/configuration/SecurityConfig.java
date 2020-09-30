@@ -29,7 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                    .csrf().ignoringAntMatchers("products/**").ignoringAntMatchers("/rest/products/**")
+                    .csrf()
+                    .ignoringAntMatchers("products/**")
+                    .ignoringAntMatchers("/rest/products/**")
                 .and()
                     .authorizeRequests()
                     .antMatchers("/", "/product/list", "/products/**").permitAll()
