@@ -4,9 +4,7 @@ import configuration.CustomAuthenticationSuccessHandler;
 import configuration.DispatcherInitializer;
 import configuration.Filter;
 import configuration.MvcConfig;
-import daoImpl.UserDaoImpl;
 import entity.User;
-import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -18,7 +16,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 import service.UserService;
 
-import static org.mockito.Mockito.spy;
 import static org.springframework.test.util.AssertionErrors.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)

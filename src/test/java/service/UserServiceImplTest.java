@@ -52,6 +52,9 @@ public class UserServiceImplTest {
         User realUser = userDao.findUserByName("admin");
         assertNotNull("OK" , realUser);
 
-        assertEquals("OK", user, realUser);
+        assertEquals("OK", user.getFirstName(), realUser.getFirstName());
+        assertEquals("OK", user.getEmail(), realUser.getEmail());
+        assertEquals("OK", user.getLastName(), realUser.getLastName());
+        assertEquals("OK", user.getUserName(), realUser.getUserName());
     }
 }
