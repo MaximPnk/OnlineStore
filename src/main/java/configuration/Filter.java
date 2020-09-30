@@ -13,7 +13,7 @@ public class Filter implements WebApplicationInitializer {
         CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter("UTF-8");
         characterEncodingFilter.setForceEncoding(true);
         characterEncodingFilter.setForceRequestEncoding(true);
-        FilterRegistration.Dynamic endcodingFilter = servletContext.addFilter("endcodingFilter", characterEncodingFilter);
-        endcodingFilter.addMappingForUrlPatterns(null, false, "/*");
+        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("endcodingFilter", characterEncodingFilter);
+        encodingFilter.addMappingForUrlPatterns(null, false, "/*");
     }
 }

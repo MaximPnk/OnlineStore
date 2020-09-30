@@ -33,7 +33,7 @@ public class CrudServiceImpl implements CrudService {
 
     @Override
     @Transactional
-    public void saveProduct(ValidProduct validProduct) {
+    public void saveValidProduct(ValidProduct validProduct) {
 
         Country country = countryDao.findCountryByName(validProduct.getCountryName());
 

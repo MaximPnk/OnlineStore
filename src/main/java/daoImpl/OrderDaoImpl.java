@@ -6,6 +6,7 @@ import entity.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import service.UserService;
@@ -25,10 +26,12 @@ public class OrderDaoImpl implements OrderDao {
     public Order findByUserAndPaid(User user, boolean paid) {
         Session session = sessionFactory.getCurrentSession();
 
-        NativeQuery<Order> query =  session.createSQLQuery("SELECT * FROM orders WHERE user_id=:user AND paid=:paid");
-        query.setParameter("user", user.getId());
+        Query<Order> query =  session.createQuery("from Order o where o.user=:user and o.isPaid=:paid", Order.class);
+                /*"SELECT * FROM orders WHERE user_id=:user AND paid=:paid"*/
+        query.setParameter("user", user);
         query.setParameter("paid", paid);
-        Order order = query.addEntity(Order.class).uniqueResult();
+//        Order order = query.addEntity(Order.class).uniqueResult();
+        Order order = query.uniqueResult();
 
         return order;
     }

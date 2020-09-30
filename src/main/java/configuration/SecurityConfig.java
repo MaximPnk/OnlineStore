@@ -28,8 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                    .antMatchers("/", "product/list").permitAll()
+        http
+                    .csrf().ignoringAntMatchers("products/**").ignoringAntMatchers("/rest/products/**")
+                .and()
+                    .authorizeRequests()
+                    .antMatchers("/", "/product/list", "/products/**").permitAll()
                     .antMatchers("/product/**").hasAnyRole("CLIENT", "ADMIN")
                     .antMatchers("/order/**").hasAnyRole("CLIENT")
                     .antMatchers("/admin/**").hasAnyRole("ADMIN")

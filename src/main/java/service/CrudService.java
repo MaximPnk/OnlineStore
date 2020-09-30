@@ -6,7 +6,7 @@ import valid.ValidProduct;
 import java.util.List;
 
 public interface CrudService {
-    void saveProduct(ValidProduct validProduct);
+    void saveValidProduct(ValidProduct validProduct);
 
     List<Product> getProducts();
 

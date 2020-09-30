@@ -42,7 +42,7 @@ public class AdminController {
         if (bindingResult.hasFieldErrors()) {
             return "product-form";
         }
-        crudService.saveProduct(validProduct);
+        crudService.saveValidProduct(validProduct);
 
         return "redirect:/product/list";
     }
@@ -62,7 +62,7 @@ public class AdminController {
         ValidProduct validProduct = new ValidProduct(product.getName(), product.getType().getName(), product.getBrand().getName(),
                 product.getBrand().getSale(), product.getBrand().getCountry().getName(), product.getPrice(), product.getAmount());
 
-        crudService.saveProduct(validProduct);
+        crudService.saveValidProduct(validProduct);
 
         return "redirect:/product/list";
     }
